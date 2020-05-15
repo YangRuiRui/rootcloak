@@ -21,18 +21,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
-import de.robv.android.xposed.callbacks.XCallback;
+import com.pinma.pmxped.IXposedHookLoadPackage;
+import com.pinma.pmxped.XC_MethodHook;
+import com.pinma.pmxped.XC_MethodReplacement;
+import com.pinma.pmxped.XSharedPreferences;
+import com.pinma.pmxped.XposedBridge;
+import com.pinma.pmxped.XposedHelpers;
+import com.pinma.pmxped.callbacks.XC_LoadPackage.LoadPackageParam;
+import com.pinma.pmxped.callbacks.XCallback;
 
-
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.findConstructorExact;
+import static com.pinma.pmxped.XposedHelpers.findAndHookMethod;
+import static com.pinma.pmxped.XposedHelpers.findConstructorExact;
 
 public class RootCloak implements IXposedHookLoadPackage {
     private static final String FAKE_COMMAND = "FAKEJUNKCOMMAND";
@@ -120,7 +119,7 @@ public class RootCloak implements IXposedHookLoadPackage {
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 String classname = (String) param.args[0];
 
-                if (classname != null && (classname.equals("de.robv.android.xposed.XposedBridge") || classname.equals("de.robv.android.xposed.XC_MethodReplacement"))) {
+                if (classname != null && (classname.equals("com.pinma.pmxped.XposedBridge") || classname.equals("com.pinma.pmxped.XC_MethodReplacement"))) {
                     param.setThrowable(new ClassNotFoundException());
                     if (debugPref) {
                         XposedBridge.log("Found and hid Xposed class name: " + classname);

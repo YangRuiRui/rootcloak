@@ -52,5 +52,6 @@ android {
 }
 
 dependencies {
-    provided 'de.robv.android.xposed:api:82'
+//    provided 'com.pinma.pmxped:api:82'
+    provided files('libs/api.jar')
 }
